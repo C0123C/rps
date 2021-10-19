@@ -1,43 +1,53 @@
+let playerScore = 0;
+let computerScore = 0;
 
-function computerPlay(){
+const buttons = document.querySelectorAll('button');
+
+function computerPlay() {
     let choices = ["rock", "paper", "scissors"];
-    console.log(choices[Math.floor(Math.random() * choices.length)]);
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
-let playerResult = 0;
-let computerResult = 0;
+function disableButtons() {
+    buttons.forEach(elem => {
+        elem.disabled = true;
+    })
+}
 
-function playRound(playerSelection,computerSelection){
+function playRound(playerSelection) {
+    let result = "";
+    const computerSelection = computerPlay();
     if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
         (playerSelection == 'scissors' && computerSelection == 'paper') ||
         (playerSelection == 'paper' && computerSelection == 'rock')) {
-            playerResult++;
-            return('You win! ' + playerSelection + ' beats ' + computerSelection)
+        playerScore++;
+        result = ('You win! ' + playerSelection + ' beats ' + computerSelection + "<br>Player score: " + playerScore + '<br>Computer score: ' + computerScore);
+        if (playerScore == 5) {
+            result += '<br>You won the game! Reload the page to play again';
+            disableButtons()
+        }
     }
     else if (playerSelection == computerSelection) {
-        return('It\'s a tie. You both chose ' + playerSelection)
+        result = ('It\'s a tie. You both chose ' + playerSelection + "<br>Player score: " + playerScore + "<br>Computer score: " + computerScore);
+
     }
     else {
-        computerResult++;
-        return('You lose! ' + computerSelection + ' beats ' + playerSelection)
+        computerScore++;
+        result = ('You lose! ' + computerSelection + ' beats ' + playerSelection + '<br>Player score: ' + playerScore + '<br>Computer score: ' + computerScore);
+        if (computerScore == 5) {
+            result += '<br>I won the game! Reload the page to play again'
+            disableButtons()
         }
-     }
+    }
+    document.getElementById('result').innerHTML = result
 
-function game(){
-    let rounds = 0;
-    while(rounds<5){
-        const playerSelection = prompt('choose "rock", "paper", "scissors"').toLowerCase();
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
-        console.log("player:" + playerResult + "computer:" + computerResult);
-        rounds++;
-    }
-    if (playerResult > computerResult) {
-        console.log("Win");
-    } else {
-        console.log("Lose");
-    }
 }
 
-game();
+buttons.forEach(button => {
+    button.addEventListener('click', function () {
+        playRound(button.value)
+    });
+});
+
+
+
