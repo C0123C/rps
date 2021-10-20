@@ -1,0 +1,45 @@
+.container{
+    width: 65%;
+    max-width: 1248px;
+    margin: auto;
+    text-align: center;
+    padding-top: 2rem;
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+button,#human-selection, #computer-selection {
+    width: 150px;
+    height: 150px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    background-size: cover;
+    background-position: center;
+}
+
+.btn > button:hover {
+    cursor: pointer;
+    transform: scale(1.1, 1.1);
+}
+
+#display {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.rock{
+    background-image: url(images/rock.jpg);
+}
+
+.paper{
+    background-image: url(images/paper.jpg);
+}
+
+.scissors{
+    background-image: url(images/scissors.jpg);
+}
+
+.hidden {
+    display: none;
+}

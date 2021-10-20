@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script src="rps.js" defer></script>
+    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <button value="rock">rock</button><button value="paper">paper</button><button value="scissors">scissors</button>
-    <div id="result"></div>
+
+    <div class="container">
+        <h1>剪刀石头布</h1>
+        <div id="display">
+            <div id="human-selection"></div>
+            <div id="computer-selection"></div>
+        </div>
+        <h2>请选择</h2>
+        <div id="btn" class="btn">
+            <button class="rock" value="rock"></button>
+            <button class="paper" value="paper"></button>
+            <button class="scissors" value="scissors"></button>
+            <div id="result"></div>
+            <input type="button" value="重新开始" onclick="reloadPage()" class="hidden" />
+        </div>
+    </div>
+
 </body>
 
 </html>
