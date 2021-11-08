@@ -3,7 +3,9 @@ let computerScore = 0;
 
 const buttons = document.querySelectorAll('button');
 const btn = document.querySelector('#btn');
-const input = document.querySelector('input');
+
+const playerScoreP = document.querySelector('#playerScore');
+const computerScoreP = document.querySelector('#computerScore');
 
 function computerPlay() {
     let choices = ["rock", "paper", "scissors"];
@@ -16,45 +18,54 @@ function disableButtons() {
     })
 }
 
+let result = "";
+
 function playRound(playerSelection) {
-    let result = "";
+
     const computerSelection = computerPlay();
     showChoice(playerSelection, computerSelection);
     if ((playerSelection == 'rock' && computerSelection == 'scissors') ||
         (playerSelection == 'scissors' && computerSelection == 'paper') ||
         (playerSelection == 'paper' && computerSelection == 'rock')) {
         playerScore++;
-        result = ('You win! ' + playerSelection + ' beats ' + computerSelection + "<br>Player score: " + playerScore + '<br>Computer score: ' + computerScore);
+        playerScoreP.textContent = `Player: ${playerScore}`;
+        result = 'You win! ';
 
-    }
-    else if (playerSelection == computerSelection) {
-        result = ('It\'s a tie. You both chose ' + playerSelection + "<br>Player score: " + playerScore + "<br>Computer score: " + computerScore);
+    } else if (playerSelection == computerSelection) {
+        result = 'It\'s a tie. You both chose ';
 
-    }
-    else {
+    } else {
         computerScore++;
-        result = ('You lose! ' + computerSelection + ' beats ' + playerSelection + '<br>Player score: ' + playerScore + '<br>Computer score: ' + computerScore);
+        computerScoreP.textContent = `Computer: ${computerScore}`;
+        result = 'You lose! ';
     }
+    document.getElementById('result').textContent = result;
     gameOver(playerScore, computerScore);
-    document.getElementById('result').innerHTML = result
+
 
 }
 
 buttons.forEach(button => {
-    button.addEventListener('click', function () {
+    button.addEventListener('click', function() {
         playRound(button.value);
     });
 });
 
-const $playerSelection = document.querySelector('#human-selection');
-const $computerSelection = document.querySelector('#computer-selection')
+const $playerSelection = document.querySelector('#playerSign');
+const $computerSelection = document.querySelector('#computerSign')
 
 function showChoice(playerSelection, computerSelection) {
     $playerSelection.className = '';
     $computerSelection.className = '';
-    $playerSelection.classList.add(playerSelection);
-    $computerSelection.classList.add(computerSelection);
+
+    const playerSignClassName = `fa-hand-${playerSelection.toLowerCase()}`
+    const computerSignClassName = `fa-hand-${computerSelection.toLowerCase()}`
+    playerSign.classList = `fas ${playerSignClassName} active`
+    computerSign.classList = `fas ${computerSignClassName} active`
 }
+
+const modal = document.querySelector('modal');
+const endgameModal = document.querySelector('#endgameModal');
 
 function reloadPage() {
     window.location.reload()
@@ -62,17 +73,18 @@ function reloadPage() {
 
 function gameOver(playerScore, computerScore) {
     if (playerScore == 5 || computerScore == 5) {
-        disableButtons()
-        btn.classList.toggle('btn');
-        input.classList.toggle('hidden');
+        disableButtons();
+       
+        const restartBtn = document.querySelector('#restartBtn');
+        restartBtn.disabled = false;
+        /* modal.classList.toggle('hidden'); */
+        endgameModal.classList.toggle('hidden');
         if (playerScore == 5) {
-            result += '<br>You won the game! Reload the page to play again';
-        }
-        else {
-            result += '<br>I won the game! Reload the page to play again';
+            result = '<br>You won the game!';
+        } else {
+            result = '<br>I won the game!';
         }
     }
+    document.getElementById('endgameMsg').innerHTML = result;
+
 }
-
-
-

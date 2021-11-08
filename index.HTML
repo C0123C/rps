@@ -7,26 +7,51 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Rock Paper Scissors</title>
+    <script src="https://kit.fontawesome.com/4c536a6bd5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+    </header>
+    <main>
+        <div class="container">
+            <div id="result">Score</div>
+            <div class="scores-container">
+                <div class="score">
+                    <p id="playerScore">Player: 0</p>
+                    <i id="playerSign"></i>
+                </div>
+                <div class="score">
+                    <p id="computerScore">Computer: 0</p>
+                    <i id="computerSign"></i>
+                </div>
+            </div>
 
-    <div class="container">
-        <h1>剪刀石头布</h1>
-        <div id="display">
-            <div id="human-selection"></div>
-            <div id="computer-selection"></div>
+            <h2>Choose</h2>
+            <div id="btn" class="btn">
+                <button class="rock" value="rock"><i class="far fa-hand-rock"></i></button>
+                <button class="paper" value="paper"><i class="far fa-hand-paper"></i></button>
+                <button class="scissors" value="scissors"><i class="far fa-hand-scissors"></i></button>
+            </div>
+            
         </div>
-        <h2>请选择</h2>
-        <div id="btn" class="btn">
-            <button class="rock" value="rock"></button>
-            <button class="paper" value="paper"></button>
-            <button class="scissors" value="scissors"></button>
-            <div id="result"></div>
-            <input type="button" value="重新开始" onclick="reloadPage()" class="hidden" />
+        <div class="modal hidden" id="endgameModal">
+            <p class="message bold" id="endgameMsg"></p>
+            <p class="message">Would you like to try again?</p>
+            <button class="btn btn-restart" id="restartBtn" onclick="reloadPage()">Restart</button>
         </div>
-    </div>
+
+    </main>
+    <footer>
+        <p>Copyright © 2021 cc</p>
+        <a href="https://github.com/michalosman" target="_blank">
+            <i class="fab fa-github"></i
+      ></a>
+    </footer>
+    <div class="overlay" id="overlay"></div>
+
 
 </body>
 
